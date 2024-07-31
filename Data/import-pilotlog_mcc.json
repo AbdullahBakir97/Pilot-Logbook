@@ -1,0 +1,230 @@
+[
+    {
+        "user_id": 125880,
+        "table": "Aircraft",
+        "guid": "cdcb01c7-f8e8-4bab-9740-55b50372c96f",
+        "meta": {
+            "aircraft_id": "N26113",
+            "equipment_type": "Single Engine",
+            "type_code": "C172",
+            "year": 2015,
+            "make": "Cessna",
+            "model": "172 Skyhawk",
+            "category": "Landplane",
+            "aircraft_class": "Light",
+            "gear_type": "Tricycle",
+            "engine_type": "Piston",
+            "complex": true,
+            "high_performance": true,
+            "pressurized": false,
+            "taa": false
+        },
+        "platform": 9,
+        "_modified": 1616317613
+    },
+    {
+        "user_id": 125880,
+        "table": "FlightLog",
+        "guid": "77e28c81-12f9-4c7d-896f-5549fe05eba7",
+        "meta": {
+            "id": 1,
+            "aircraft": {
+                "id": 4,
+                "aircraft_id": "N26113",
+                "equipment_type": "Single Engine",
+                "type_code": "C172",
+                "year": 2015,
+                "make": "Cessna",
+                "model": "172 Skyhawk",
+                "category": "Landplane",
+                "aircraft_class": "Light",
+                "gear_type": "Tricycle",
+                "engine_type": "Piston",
+                "complex": true,
+                "high_performance": true,
+                "pressurized": false,
+                "taa": false
+            },
+            "approaches": [],
+            "persons": [],
+            "date": "2024-06-23",
+            "from_airport": "Lake Jenniferview",
+            "to_airport": "South Rachelbury",
+            "route": "Instead least little night.",
+            "time_out": "17:48:08",
+            "time_off": "17:48:08",
+            "time_on": "18:28:47.076218",
+            "time_in": "18:28:47.076218",
+            "on_duty": "17:48:08",
+            "off_duty": "18:28:47.076218",
+            "total_time": "0.68",
+            "pic": "1.03",
+            "sic": "1.53",
+            "night": "0.79",
+            "solo": "0.32",
+            "cross_country": "0.03",
+            "nvg": "1.71",
+            "nvg_ops": "1.25",
+            "distance": "297.73",
+            "day_takeoffs": 2,
+            "day_landings_full_stop": 1,
+            "night_takeoffs": 0,
+            "night_landings_full_stop": 2,
+            "all_landings": 10,
+            "actual_instrument": "0.84",
+            "simulated_instrument": "1.10",
+            "hobbs_start": "911.70",
+            "hobbs_end": "746.36",
+            "tach_start": "838.61",
+            "tach_end": "546.54",
+            "holds": 2,
+            "dual_given": "1.63",
+            "dual_received": "0.81",
+            "simulated_flight": "0.27",
+            "ground_training": "0.23",
+            "instructor_name": "Vanessa Williams",
+            "instructor_comments": "Thought model size arm. Hit theory factor fear attention.",
+            "flight_review": true,
+            "checkride": false,
+            "ipc": false,
+            "nvg_proficiency": true,
+            "faa_6158": true,
+            "remarks": "Quite low scientist happy source. Per second impact. Worker statement realize fast coach institution we.\nWriter include room choose. Run available step garden design together.",
+            "custom_fields": {
+                "CustomFieldNameText": "name",
+                "CustomFieldNameNumeric": "79.93850734036623",
+                "CustomFieldNameHours": "63.73930239532945",
+                "CustomFieldNameCounter": "43",
+                "CustomFieldNameDate": "2024-05-15",
+                "CustomFieldNameDateTime": "2024-01-21 20:19:12",
+                "CustomFieldNameToggle": "True"
+            }
+        }
+    },
+    {
+        "user_id": 125880,
+        "table": "Approach",
+        "guid": "402d035a-3e4e-4d2d-b070-8139a0d53773",
+        "meta": {
+            "id": 1,
+            "type": "safe",
+            "runway": "95",
+            "airport": "Olsenstad",
+            "comments": "Year design security fund. Set something easy. Then than many just attention among per."
+        }
+    },
+    {
+        "user_id": 125880,
+        "table": "Approach",
+        "guid": "c757d5dd-d01e-4f04-bec3-7578980d805e",
+        "meta": {
+            "id": 2,
+            "type": "modern",
+            "runway": "93",
+            "airport": "Lake Allison",
+            "comments": "Inside safe owner yard. Participant left night audience money two blue."
+        }
+    },
+    {
+        "user_id": 125880,
+        "table": "Approach",
+        "guid": "463d5f22-1239-46e5-a446-7618b7a5565b",
+        "meta": {
+            "id": 3,
+            "type": "instead",
+            "runway": "50",
+            "airport": "East Kristen",
+            "comments": "Lose more statement range."
+        }
+    },
+    {
+        "user_id": 125880,
+        "table": "Approach",
+        "guid": "a674de32-d05f-41ac-b059-65b403d22d0e",
+        "meta": {
+            "id": 4,
+            "type": "wish",
+            "runway": "40",
+            "airport": "East Jason",
+            "comments": "Just discuss under rise pretty. Region must spring local. Trouble employee raise sort owner."
+        }
+    },
+    {
+        "user_id": 125880,
+        "table": "Approach",
+        "guid": "b25350b0-af28-422a-9380-5a6bdbdc99a1",
+        "meta": {
+            "id": 5,
+            "type": "project",
+            "runway": "91",
+            "airport": "North David",
+            "comments": "Write situation challenge information protect real. Piece section house sure price television."
+        }
+    },
+    {
+        "user_id": 125880,
+        "table": "Approach",
+        "guid": "14eeea84-7c0c-4dc4-ad94-66dbca938849",
+        "meta": {
+            "id": 6,
+            "type": "remain",
+            "runway": "63",
+            "airport": "Amychester",
+            "comments": "Cultural skin customer foot type. Since produce sister probably minute theory."
+        }
+    },
+    {
+        "user_id": 125880,
+        "table": "Person",
+        "guid": "d992810b-9f05-4561-a675-d30def1a4740",
+        "meta": {
+            "user_id": null,
+            "role": "city"
+        }
+    },
+    {
+        "user_id": 125880,
+        "table": "Person",
+        "guid": "42796f2b-96c8-4ed9-bc0d-b5581c31a95c",
+        "meta": {
+            "user_id": null,
+            "role": "including"
+        }
+    },
+    {
+        "user_id": 125880,
+        "table": "Person",
+        "guid": "42d05f41-c24d-4624-968d-6d7f35b74ca3",
+        "meta": {
+            "user_id": null,
+            "role": "bag"
+        }
+    },
+    {
+        "user_id": 125880,
+        "table": "Person",
+        "guid": "aa1742d0-cb6f-4355-9b3c-1043b9082c4d",
+        "meta": {
+            "user_id": null,
+            "role": "soldier"
+        }
+    },
+    {
+        "user_id": 125880,
+        "table": "Person",
+        "guid": "9573c365-5621-48fc-90ea-3bbf8bd62e92",
+        "meta": {
+            "user_id": null,
+            "role": "main"
+        }
+    },
+    {
+        "user_id": 125880,
+        "table": "Person",
+        "guid": "953ec5b7-a201-4103-b0d3-03cadcb3ec23",
+        "meta": {
+            "user_id": null,
+            "role": "purpose"
+        }
+    }
+]

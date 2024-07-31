@@ -1,0 +1,48 @@
+from django.shortcuts import render
+from rest_framework import viewsets
+from rest_framework.decorators import action
+from rest_framework.response import Response
+from django.http import JsonResponse
+from .models import Aircraft, FlightLog
+from .serializers import AircraftSerializer, FlightLogSerializer
+from .importer import PilotLogImporter
+from .exporter import PilotLogExporter
+import os
+
+class AircraftViewSet(viewsets.ModelViewSet):
+    queryset = Aircraft.objects.all()
+    serializer_class = AircraftSerializer
+
+class FlightLogViewSet(viewsets.ModelViewSet):
+    queryset = FlightLog.objects.all()
+    serializer_class = FlightLogSerializer
+
+    @action(detail=False, methods=['post'])
+    def import_logs(self, request):
+        file_path = request.data.get('file_path')
+        if file_path:
+            if os.path.exists(file_path):
+                importer = PilotLogImporter(file_path)
+                try:
+                    importer.import_logs()
+                    return Response({"status": "logs imported"})
+                except Exception as e:
+                    return Response({"error": str(e)}, status=500)
+            else:
+                return Response({"error": "File does not exist"}, status=400)
+        return Response({"error": "file_path is required"}, status=400)
+
+    @action(detail=False, methods=['get'])
+    def export_logs(self, request):
+        file_path = request.query_params.get('file_path')
+        if file_path:
+            directory = os.path.dirname(file_path)
+            if not os.path.exists(directory):
+                os.makedirs(directory)
+            exporter = PilotLogExporter(file_path)
+            try:
+                exporter.export_logs()
+                return JsonResponse({"status": "logs exported"})
+            except Exception as e:
+                return JsonResponse({"error": str(e)}, status=500)
+        return JsonResponse({"error": "file_path is required"}, status=400)
