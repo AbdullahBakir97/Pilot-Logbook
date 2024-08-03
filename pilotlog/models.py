@@ -95,9 +95,8 @@ class FlightLog(models.Model):
         return f"Flight on {self.date} from {self.from_airport} to {self.to_airport}"
 
     def clean(self):
-        # Custom validation for custom fields
         super().clean()
-        custom_fields = self.custom_fields
+        custom_fields = self.custom_fields or {}
         if 'required_key' not in custom_fields:
             raise ValidationError('Custom fields must include "required_key"')
 

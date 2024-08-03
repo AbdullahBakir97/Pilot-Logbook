@@ -2,8 +2,10 @@ import json
 import csv
 from django.contrib import admin
 from django.http import HttpResponse
+from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
 from .models import Aircraft, FlightLog, Person, Approach
+from .forms import FlightLogForm
 from pilotlog.importer import PilotLogImporter
 from pilotlog.exporter import PilotLogExporter
 from django import forms
@@ -25,6 +27,7 @@ class ImportForm(forms.Form):
 
 @admin.register(FlightLog)
 class FlightLogAdmin(admin.ModelAdmin):
+    form = FlightLogForm
     list_display = (
         'aircraft', 'date', 'from_airport', 'to_airport', 'total_time', 
         'pic', 'sic', 'night', 'flight_review', 'checkride', 'ipc'
@@ -55,9 +58,9 @@ class FlightLogAdmin(admin.ModelAdmin):
                     self.message_user(request, "Error decoding JSON file. Please check the file format.", level=messages.ERROR)
                 except Exception as e:
                     self.message_user(request, f"Error importing logs: {e}", level=messages.ERROR)
-                
-                # Clean up the temporary file
-                default_storage.delete(file_path)
+                finally:
+                    # Clean up the temporary file
+                    default_storage.delete(file_path)
                 
                 return
 
@@ -67,12 +70,12 @@ class FlightLogAdmin(admin.ModelAdmin):
         return HttpResponse(
             content=(
                 '<form method="post" enctype="multipart/form-data">'
-                '    <input type="hidden" name="csrfmiddlewaretoken" value="{}">'.format(request.META['CSRF_COOKIE']) +
+                '    {csrf_token}'
                 '    <label for="id_import_file">Select file:</label>'
                 '    <input type="file" name="import_file" required id="id_import_file">'
                 '    <button type="submit">Upload</button>'
                 '</form>'
-            )
+            ).format(csrf_token=request.csrf_token)
         )
 
     def export_logs(self, request, queryset):

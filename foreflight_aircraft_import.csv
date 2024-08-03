@@ -1,3 +1,0 @@
-AircraftID,Make,Model,Class,Complex,HighPerformance,Reference,CustomFieldName_Text,CustomFieldName_Numeric,CustomFieldName_Hours,CustomFieldName_Counter,CustomFieldName_Date,CustomFieldName_DateTime,CustomFieldName_Toggle
-00000000-0000-0000-0000-000000000367,Cessna,C150,5,False,False,PHALI,,0,0.0,0,,,False
-00000000-0000-0000-0000-000000000368,Cessna,C150,5,False,False,PHGRA,,0,0.0,0,,,False
