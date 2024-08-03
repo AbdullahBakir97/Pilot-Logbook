@@ -8,6 +8,10 @@ This project is designed to manage pilot logbooks. It involves three key compone
 2. **Django App**: A Django app named `pilotlog` to store the imported data using models.
 3. **Exporter Module**: Exports the data from the database to a CSV file in the format specified in `Data/export-logbook_template.csv`.
 
+![scrnli_03_08_2024_17-08-48](https://github.com/user-attachments/assets/155c7bfe-77b4-4ffc-8856-be62ea17912d)
+![2024-08-03](https://github.com/user-attachments/assets/67dc8cda-ec60-4f6f-a416-d36bc8bfe35a)
+![scrnli_03_08_2024_17-07-41](https://github.com/user-attachments/assets/5e477418-eb7c-4e8b-a602-adf843db3be1)
+
 
 ## Installation and Setup
 
