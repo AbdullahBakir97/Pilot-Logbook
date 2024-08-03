@@ -10,25 +10,32 @@ from pilotlog.serializers import AircraftSerializer, FlightLogSerializer, Approa
 class Command(BaseCommand):
     help = 'Generate JSON data from the current database state'
 
-    def handle(self, *args, **options):
+    def handle(self, *args, **options) -> None:
         json_file_path = os.path.join('Data/import-pilotlog_mcc.json')
 
         try:
-            # Fetch user data and create a mapping for user IDs
+            # Fetch and map user data
             user_data = User.objects.all()
             user_id_map = {user.id: user.id for user in user_data}
 
             # Fetch data from the database
-            aircraft_data = AircraftSerializer(Aircraft.objects.all(), many=True).data
-            flight_logs_data = FlightLogSerializer(FlightLog.objects.all(), many=True).data
-            approaches_data = ApproachSerializer(Approach.objects.all(), many=True).data
-            persons_data = PersonSerializer(Person.objects.all(), many=True).data
+            data_map = {
+                "Aircraft": AircraftSerializer(Aircraft.objects.all(), many=True).data,
+                "FlightLog": FlightLogSerializer(FlightLog.objects.all(), many=True).data,
+                "Approach": ApproachSerializer(Approach.objects.all(), many=True).data,
+                "Person": PersonSerializer(Person.objects.all(), many=True).data,
+            }
 
             transformed_data = []
             current_timestamp = int(now().timestamp())
 
-            def transform_instance_data(instance_data, table_name, related_fields=None):
-                """Helper function to transform instance data."""
+            def transform_instance_data(instance_data: list, table_name: str, related_fields: list = None) -> None:
+                """
+                Helper function to transform instance data.
+                :param instance_data: List of serialized data instances.
+                :param table_name: Name of the table corresponding to the data.
+                :param related_fields: List of related fields to exclude from meta.
+                """
                 if related_fields is None:
                     related_fields = []
                 for instance in instance_data:
@@ -38,15 +45,15 @@ class Command(BaseCommand):
                         "table": table_name,
                         "guid": str(uuid4()),
                         "meta": {k: v for k, v in instance.items() if k not in related_fields},
-                        "_modified": current_timestamp
+                        "_modified": current_timestamp,
                     }
                     transformed_data.append(transformed_instance)
 
             # Transform data for each model
-            transform_instance_data(aircraft_data, "Aircraft")
-            transform_instance_data(flight_logs_data, "FlightLog", related_fields=['aircraft', 'approaches', 'persons'])
-            transform_instance_data(approaches_data, "Approach")
-            transform_instance_data(persons_data, "Person", related_fields=['user'])
+            transform_instance_data(data_map["Aircraft"], "Aircraft")
+            transform_instance_data(data_map["FlightLog"], "FlightLog", related_fields=['aircraft', 'approaches', 'persons'])
+            transform_instance_data(data_map["Approach"], "Approach")
+            transform_instance_data(data_map["Person"], "Person", related_fields=['user'])
 
             # Ensure the directory exists
             os.makedirs(os.path.dirname(json_file_path), exist_ok=True)
@@ -57,5 +64,11 @@ class Command(BaseCommand):
 
             self.stdout.write(self.style.SUCCESS(f'Successfully generated JSON data at {json_file_path}'))
         
+        except FileNotFoundError as e:
+            self.stdout.write(self.style.ERROR(f'File not found: {e}'))
+        except json.JSONDecodeError as e:
+            self.stdout.write(self.style.ERROR(f'JSON decode error: {e}'))
+        except IOError as e:
+            self.stdout.write(self.style.ERROR(f'I/O error: {e}'))
         except Exception as e:
-            self.stdout.write(self.style.ERROR(f'Error generating JSON data: {e}'))
+            self.stdout.write(self.style.ERROR(f'Unexpected error: {e}'))
