@@ -2,7 +2,7 @@ import json
 import csv
 from django.apps import apps
 from django.db.models import Model
-from .models import Aircraft, FlightLog, Approach, Person
+from pilotlog.models import Aircraft, FlightLog, Approach, Person
 from .custom_field_renderer import CustomFieldRenderer
 
 class PilotLogExporter:
