@@ -1,5 +1,5 @@
 import json
-from .models import Aircraft, FlightLog, Approach, Person
+from pilotlog.models import Aircraft, FlightLog, Approach, Person
 from django.contrib.auth.models import User
 from .custom_field_renderer import CustomFieldRenderer
 
