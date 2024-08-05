@@ -1,7 +1,7 @@
 import json
 from django.core.management.base import BaseCommand
 from django.http import HttpResponse
-from pilotlog.exporter import PilotLogExporter
+from pilotlog.utils.exporter import PilotLogExporter
 from django.core.files.storage import default_storage
 
 class Command(BaseCommand):

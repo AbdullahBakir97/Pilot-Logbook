@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 import json
 from django.template import Context, Template
 from django.core.exceptions import ValidationError
-from .custom_field_renderer import CustomFieldRenderer
+from utils.custom_field_renderer import CustomFieldRenderer
 
 class Aircraft(models.Model):
     aircraft_id = models.CharField(max_length=50, unique=True)

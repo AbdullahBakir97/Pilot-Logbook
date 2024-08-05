@@ -1,7 +1,7 @@
 import json
 from django.core.management.base import BaseCommand
 from pilotlog.models import Aircraft, FlightLog, Approach, Person
-from pilotlog.importer import PilotLogImporter
+from pilotlog.utils.importer import PilotLogImporter
 
 class Command(BaseCommand):
     help = 'Import pilot logs from a JSON file.'

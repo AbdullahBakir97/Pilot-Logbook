@@ -6,8 +6,8 @@ from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
 from .models import Aircraft, FlightLog, Person, Approach
 from .forms import FlightLogForm
-from pilotlog.importer import PilotLogImporter
-from pilotlog.exporter import PilotLogExporter
+from utils.importer import PilotLogImporter
+from utils.exporter import PilotLogExporter
 from django import forms
 from django.contrib import messages
 
