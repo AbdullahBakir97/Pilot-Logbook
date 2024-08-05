@@ -17,8 +17,8 @@ This project is designed to manage pilot logbooks. It involves three key compone
 
 ### Prerequisites
 
-- Python 3.8+
-- Django 3.2+
+- Python
+- Django
 - PostgreSQL (or another database supported by Django ORM)
 
 ### Setup Instructions
