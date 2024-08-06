@@ -6,8 +6,8 @@ from rest_framework.response import Response
 from django.http import JsonResponse
 from .models import Aircraft, FlightLog
 from .serializers import AircraftSerializer, FlightLogSerializer
-from utils.importer import PilotLogImporter
-from utils.exporter import PilotLogExporter
+from pilotlog.utils.importer import PilotLogImporter
+from pilotlog.utils.exporter import PilotLogExporter
 
 class AircraftViewSet(viewsets.ModelViewSet):
     """

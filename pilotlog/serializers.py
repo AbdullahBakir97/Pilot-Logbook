@@ -2,7 +2,7 @@ import json
 from rest_framework import serializers
 from .models import Aircraft, FlightLog, Approach, Person
 from django.template import Context, Template
-from utils.custom_field_renderer import CustomFieldRenderer
+from pilotlog.utils.custom_field_renderer import CustomFieldRenderer
 
 class AircraftSerializer(serializers.ModelSerializer):
     class Meta:

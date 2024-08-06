@@ -3,7 +3,8 @@ from django.contrib.auth.models import User
 import json
 from django.template import Context, Template
 from django.core.exceptions import ValidationError
-from utils.custom_field_renderer import CustomFieldRenderer
+from pilotlog.utils.custom_field_renderer import CustomFieldRenderer
+from .managers import FlightLogManager
 
 class Aircraft(models.Model):
     aircraft_id = models.CharField(max_length=50, unique=True)
@@ -23,7 +24,7 @@ class Aircraft(models.Model):
 
     def __str__(self):
         return f"{self.make} {self.model} ({self.aircraft_id})"
-    
+
 class Approach(models.Model):
     type = models.CharField(max_length=100)
     runway = models.CharField(max_length=50)
@@ -32,18 +33,16 @@ class Approach(models.Model):
 
     def __str__(self):
         return f"Approach {self.type} at {self.airport}"
-    
+
 class Person(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user', null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='persons', null=True, blank=True)
     role = models.CharField(max_length=100)
 
     def __str__(self):
         return f"{self.user.username if self.user else 'No user'} ({self.role})"
 
-
-    
 class FlightLog(models.Model):
-    aircraft = models.ForeignKey(Aircraft, on_delete=models.CASCADE, related_name='aircraft')
+    aircraft = models.ForeignKey(Aircraft, on_delete=models.CASCADE, related_name='flight_aircraft')
     date = models.DateField()
     from_airport = models.CharField(max_length=50)
     to_airport = models.CharField(max_length=50)
@@ -88,9 +87,11 @@ class FlightLog(models.Model):
     faa_6158 = models.BooleanField(default=False)
     remarks = models.TextField(blank=True, null=True)
     custom_fields = models.JSONField(default=dict, blank=True)
-    approaches = models.ManyToManyField(Approach, related_name='approaches')
-    persons = models.ManyToManyField(Person, related_name='persons')
-    
+    approaches = models.ManyToManyField(Approach, related_name='flight_approaches')
+    persons = models.ManyToManyField(Person, related_name='flight_persons')
+
+    objects = FlightLogManager()
+
     def __str__(self):
         return f"Flight on {self.date} from {self.from_airport} to {self.to_airport}"
 
